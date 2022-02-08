@@ -18,3 +18,48 @@ cargo build --release
 
 You could obviously omit the --release, at the point of writing there is no different behaviour between release and debug (logging could change eventually?)
 
+# Typical Usage
+
+If you're ever stuck and don't know which commands exist, feel free to run the help command:
+
+```
+legacy-converter --help
+```
+
+To convert a legacy qosmetics file, you just run the appropriate subcommand like this:
+
+```
+legacy-converter qbloq
+legacy-converter qsaber
+legacy-converter qwall
+```
+
+after that you need to provide a few arguments so that the program knows what values to use in the created file.
+
+### Cyoob
+
+For cyoobs a command looks like this:
+
+```
+legacy-converter qbloq [OPTIONS] <FILENAME> <OBJECT_NAME> <AUTHOR> <DESCRIPTION>
+```
+
+Example usage:
+
+```
+legacy-converter qbloq ./oldbloq.qbloq "Old Bloq" "RedBrumbler" "Just an old bloq that's ready for conversion!" --hasBomb --showArrow 
+```
+
+For more info about the command you can run the specific help command:
+
+```
+legacy-converter qbloq --help
+```
+
+### Whacker
+
+TODO: Awaiting actual implementation of a quest mod
+
+### Dodgy
+
+TODO: Awaiting actual implementation of a quest mod
