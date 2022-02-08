@@ -5,7 +5,6 @@ pub struct CyoobArgs {
     pub filename: String,
 
     /// the name to put for the author
-    #[clap(long = "objectName")]
     pub object_name: String,
     /// the name to put for the author
     pub author: String,
