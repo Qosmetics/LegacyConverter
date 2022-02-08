@@ -3,6 +3,12 @@ name: Cargo Build
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - '**.md'
+      - 'rustfmt.toml'
+      - '**.yml'
+      - '!.github/workflows/cargo-build.yml'
+      - '.gitignore'
 
 jobs:
   build:

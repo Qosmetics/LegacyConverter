@@ -4,7 +4,12 @@ name: Pull Request Test
 on:
   pull_request:
     branches: [master]
-
+    paths-ignore:
+      - '**.md'
+      - 'rustfmt.toml'
+      - '**.yml'
+      - '!.github/workflows/pull-request.yml'
+      - '.gitignore'
 jobs:
   build:
     runs-on: ${{ matrix.os }}
