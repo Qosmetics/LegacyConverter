@@ -41,7 +41,7 @@ after that you need to provide a few arguments so that the program knows what va
 For cyoobs a command looks like this:
 
 ```
-legacy-converter qbloq [OPTIONS] <FILENAME> <OBJECT_NAME> <AUTHOR> <DESCRIPTION>
+legacy-converter qbloq <FILENAME> <OBJECT_NAME> <AUTHOR> <DESCRIPTION> [OPTIONS]
 ```
 
 Example usage:
