@@ -6,8 +6,6 @@ use serde_json::Value as Value;
 pub struct PackageJson {
     pub android_file_name: String,
     pub pc_file_name: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub cover_image: Option<String>,
     pub descriptor: Descriptor,
     pub config: Value,
 }
@@ -17,5 +15,7 @@ pub struct PackageJson {
 pub struct Descriptor {
     pub object_name: String,
     pub author: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cover_image: Option<String>,
     pub description: String
 }

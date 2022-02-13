@@ -16,10 +16,14 @@ pub fn convert(args: CyoobArgs) {
     let cyoob_file_name = format!("{}.cyoob", file_stem);
 
     let android_file_name = file_path.file_name().unwrap().to_string_lossy().to_string();
+    // if I implement what the warning suggests here it can't deduce type and it's cringe
+    #[allow(clippy::redundant_closure)]
+    let cover_image_path= args.cover_image.as_ref().map(|cover_image| Path::new(cover_image));
 
     let descriptor = Descriptor{
             object_name: args.object_name, 
             author: args.author, 
+            cover_image: cover_image_path.map(|inner| inner.file_name().unwrap().to_string_lossy().to_string()),
             description: args.description
         };
         
@@ -32,14 +36,9 @@ pub fn convert(args: CyoobArgs) {
         is_legacy: Some(true)
     };
 
-    // if I implement what the warning suggests here it can't deduce type and it's cringe
-    #[allow(clippy::redundant_closure)]
-    let cover_image_path= args.cover_image.as_ref().map(|cover_image| Path::new(cover_image));
-
     let package = PackageJson {
         android_file_name: android_file_name.clone(),
         pc_file_name: "".to_string(),
-        cover_image: cover_image_path.map(|inner| inner.file_name().unwrap().to_string_lossy().to_string()),
         descriptor,
         config: serde_json::to_value(config).unwrap(),
     };
@@ -61,7 +60,7 @@ pub fn convert(args: CyoobArgs) {
 
     if let Some (cover_image_file_name) = cover_image_path.map(|inner| inner.file_name().unwrap().to_string_lossy().to_string()) {
         cyoob.start_file(cover_image_file_name, options).unwrap();
-        let mut cover_file = std::fs::File::open(file_path).unwrap();
+        let mut cover_file = std::fs::File::open(cover_image_path.unwrap()).unwrap();
         let mut cover_buffer = Cursor::new(Vec::new());
         cover_file.read_to_end(cover_buffer.get_mut()).unwrap();
         cyoob.write_all(cover_buffer.get_mut()).unwrap();
