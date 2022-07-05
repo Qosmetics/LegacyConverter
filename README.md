@@ -1,3 +1,7 @@
+# Archived
+
+I archived this repo because it's intended use is to convert models, which the quest mod can now do on it's own so it shouldn't be needed anymore
+
 # Why this?
 
 Qosmetics is going through another rewrite, and this program will handle most of the conversion from legacy files to the new file format for you. it's a simple rust program since I would be parsing json and doing command line arguments, and I like doing those in rust since working on qpm-rust (convenience)
